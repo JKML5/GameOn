@@ -1,18 +1,13 @@
-/*
- * Desktop first
- * Maquettes : 1440px (desktop) & 414 px (mobile)
- */
-
-
+/* Tablettes */
+@mixin tablet {
+     @media screen and (max-width: $tablet-breakpoint) {
+         @content;
+        }
+    }
+    
 /* Smartphones écrans larges */
 @mixin mobile {
     @media screen and (max-width: $mobile-breakpoint) {
-        @content;
-    }
-}
-
-@mixin tablet {
-    @media screen and (max-width: $tablet-breakpoint) {
         @content;
     }
 }
