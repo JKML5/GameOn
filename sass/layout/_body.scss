@@ -1,0 +1,12 @@
+body {
+    font-family: $font-default;
+    font-size: 18px;
+    color: $color-primary;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 50px 100px;
+
+    @include tablet {
+        padding: 30px;
+    }
+}

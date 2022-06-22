@@ -1,0 +1,54 @@
+.nav {
+    display: flex;
+    flex-direction: row;
+    font-size: 18px;
+
+    a {
+        color: $color-primary;
+        background-color: $color-white;
+        font-weight: 500;
+        padding: 9px 12px;
+        margin: 0 5px;
+        text-decoration: none;
+        border-radius: 15px;
+
+        &.hamburger {
+            display: none;
+            color: $color-secondary;
+            font-size: 20px;
+        }
+
+        &:hover, &.active {
+            background-color: $color-secondary;
+            color: $color-white;
+            text-decoration: underline;
+        }
+    }
+
+    @include tablet {
+        flex-direction: column;
+        position: relative;
+
+        a.hamburger {
+            display: block;
+        }
+        a {
+            display: none;
+        }
+
+        &.responsive a {
+          float: none;
+          display: block;
+          text-align: left;
+          text-decoration: none;
+        }
+
+        &__content {
+            position: absolute;
+            width: max-content;
+            top: 50px;
+            right: 0;
+            z-index: 10;
+        }
+    }
+}

@@ -1,0 +1,23 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 80px;
+
+    &__logo {
+        height: 45px;
+
+        img {
+            height: 100%;
+        }
+    }
+
+    @include tablet {
+        margin-bottom: 30px;
+
+        &__logo {
+            height: 20px;
+        }
+    }
+}
