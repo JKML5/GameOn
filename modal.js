@@ -14,12 +14,27 @@ const formData      = document.querySelectorAll(".formData");
 const modalCloseBtn = document.querySelector(".close");
 
 // DOM Form Elements
-const formFirstName   = document.getElementById("first");
-const formLastName    = document.getElementById("last");
-const formEmail       = document.getElementById("email");
-const formQuantity    = document.getElementById("quantity");
-const formTournaments = document.getElementsByName("location");
-const formCGU         = document.getElementById("checkbox1");
+const formFirstName = document.getElementById("first");
+const formLastName  = document.getElementById("last");
+const formEmail     = document.getElementById("email");
+const formBirthdate = document.getElementById("birthdate");
+const formQuantity  = document.getElementById("quantity");
+const formLocation  = document.getElementsByName("location");
+const formCGU       = document.getElementById("checkbox1");
+
+const errorMessages = {
+  'firstNameNull'     : 'Merci de renseigner votre prénom',
+  'firstNameTooShort' : 'Votre prénom doit comporter au moins 2 caractères',
+  'lastNameNull'      : 'Merci de renseigner votre nom',
+  'lastNameTooShort'  : 'Votre nom doit comporter au moins 2 caractères',
+  'emailNull'         : 'Merci de renseigner votre adresse e-mail',
+  'emailError'        : 'Le format de l’adresse e-mail incorrect',
+  'birthdateNull'     : 'Merci de renseigner votre date de naissance',
+  'quantityNull'      : 'Merci d’indiquer le nombre de tournois déjà participés',
+  'quantityError'     : 'Merci de renseigner un nombre valide',
+  'locationNull'      : 'Merci de sélectionner au moins une ville',
+  'CGUUnchecked'      : 'Veuillez accepter les conditions d’utilisation',
+};
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -38,72 +53,77 @@ function closeModal() {
 }
 
 // Validate radio buttons
-function validateRadioButtons(tournaments) {
-  for (let tournament of tournaments) {
-    if (tournament.checked === true)
+function validateRadioButtons(elements) {
+  for (let element of elements) {
+    if (element.checked === true)
       return true;
   } 
 
   return false;
 }
 
+function showError(elt, message, data) {
+  elt.setAttribute("data-error-visible", "true"); 
+  elt.setAttribute("data-error", message); 
+  data.nbErrors++;
+}
+
 // Validate form
 function validate() {
-  let nbErrors = 0;
+  let data = {
+    nbErrors : 0
+  };
 
+  // Delete all error messages
+  Array.prototype.forEach.call(document.querySelectorAll(".formData"), function(node) {
+    node.setAttribute("data-error-visible", "false"); 
+  });
+
+  // Last name
   if (formFirstName.value == '') {
-    nbErrors++;
-    console.log('Prénom non renseigné');
+    showError(formFirstName.parentElement, errorMessages.firstNameNull, data)
+  } else if (formFirstName.value.length < formFirstName.getAttribute('minlength')) {
+    showError(formFirstName.parentElement, errorMessages.firstNameTooShort, data)
   }
 
-  if (formFirstName.value.length < formFirstName.getAttribute('minlength')) {
-    nbErrors++;
-    console.log('Prénom trop court');
-  }
-
+  // First name
   if (formLastName.value == '') {
-    nbErrors++;
-    console.log('Nom non renseigné');
-  }
-
-  if (formLastName.value.length < formLastName.getAttribute('minlength')) {
-    nbErrors++;
-    console.log('Nom trop court');
-  }
-
-  if (formEmail.value == '') {
-    nbErrors++;
-    console.log('Email non renseigné');
+    showError(formLastName.parentElement, errorMessages.lastNameNull, data)
+  } else if (formLastName.value.length < formLastName.getAttribute('minlength')) {
+    showError(formLastName.parentElement, errorMessages.lastNameTooShort, data)
   }
 
   // Email validation
   // @see https://www.w3resource.com/javascript/form/email-validation.php
-  if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(formEmail.value)) {
-    nbErrors++;
-    console.log('Format de l’email incorrect');
+  if (formEmail.value == '') {
+    showError(formEmail.parentElement, errorMessages.emailNull, data)
+  } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(formEmail.value)) {
+    showError(formEmail.parentElement, errorMessages.emailError, data)
   }
-
+  
+  // Number of participations
+  if (formBirthdate.value == '') {
+    showError(formBirthdate.parentElement, errorMessages.birthdateNull, data)
+  }
+  
+  // Number of participations
   if (formQuantity.value == '') {
-    nbErrors++;
-    console.log('Quantité non renseignée');
+    showError(formQuantity.parentElement, errorMessages.quantityNull, data)
+  } else if (!Number.isInteger(parseInt(formQuantity.value))) {
+    showError(formQuantity.parentElement, errorMessages.quantityError, data)
   }
 
-  if (!Number.isInteger(parseInt(formQuantity.value))) {
-    nbErrors++;
-    console.log('Ce n’est pas un nombre');
+  // Tournament location
+  if (!validateRadioButtons(formLocation)) {
+    showError(document.querySelector(".location"), errorMessages.locationNull, data)
   }
 
-  if (!validateRadioButtons(formTournaments)) {
-    nbErrors++;
-    console.log('Aucun tournoi sélectionné');
-  }
-
+  // CGU
   if (!formCGU.checked) {
-    nbErrors++;
-    console.log('CGU non coché');
+    showError(formCGU.parentElement, errorMessages.CGUUnchecked, data)
   }
 
-  if (nbErrors <= 0) {
+  if (data.nbErrors <= 0) {
     console.log('Formulaire valide');
   } else {
     console.log('Formulaire invalide');
