@@ -155,6 +155,7 @@ body {
 
 @media screen and (max-width: 768px) {
   .hero {
+    height: auto;
     display: block;
     box-shadow: unset;
   }
@@ -184,6 +185,22 @@ body {
   .hero__img img {
     border-radius: 10px;
     margin: 35px 0;
+  }
+}
+
+.footer {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+  margin-top: 100px;
+  color: #FE142F;
+}
+
+@media screen and (max-width: 768px) {
+  .footer {
+    margin-top: 30px;
+    text-align: center;
   }
 }
 

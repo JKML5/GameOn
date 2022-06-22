@@ -44,6 +44,7 @@
     }
 
     @include tablet {
+        height: auto;
         display: block;
         box-shadow: unset;
 
