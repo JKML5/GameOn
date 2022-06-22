@@ -12,6 +12,7 @@ const modalbg       = document.querySelector(".bground");
 const modalBtn      = document.querySelectorAll(".modal-btn");
 const formData      = document.querySelectorAll(".formData");
 const modalCloseBtn = document.querySelector(".close");
+const heroContent   = document.querySelector(".hero-content");
 
 // DOM Form Elements
 const formFirstName = document.getElementById("first");
@@ -35,6 +36,7 @@ const errorMessages = {
   'locationNull'      : 'Merci de sélectionner au moins une ville',
   'CGUUnchecked'      : 'Veuillez accepter les conditions d’utilisation',
 };
+const confirmationMessage = 'Merci ! Votre réservation a bien été enregistrée.';
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -124,9 +126,11 @@ function validate() {
   }
 
   if (data.nbErrors <= 0) {
-    console.log('Formulaire valide');
-  } else {
-    console.log('Formulaire invalide');
+    var confirmationMessageElt = document.createElement('p');
+    confirmationMessageElt.className = 'hero-text';
+    confirmationMessageElt.innerText = confirmationMessage;
+    heroContent.append(confirmationMessageElt);
+    closeModal();
   }
 
   return false;
