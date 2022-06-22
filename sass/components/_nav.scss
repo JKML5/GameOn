@@ -16,6 +16,8 @@
             display: none;
             color: $color-secondary;
             font-size: 20px;
+            position: relative;
+            left: 12px;
         }
 
         &:hover, &.active {

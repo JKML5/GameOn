@@ -1,0 +1,85 @@
+.hero {
+    height: 650px;
+    border-radius: 10px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    box-shadow: 0 2px 7px 2px rgba(0, 0, 0, 0.2);
+
+    &__content {
+        padding: 0 65px;
+        grid-column: span 5;
+        background-color: $color-primary;
+        color: $color-white;
+        position: relative;
+        min-width: 520px;
+
+        &__headline {
+            font-size: 96px;
+            font-weight: 500;
+            line-height: 125px;
+            white-space: nowrap;
+            margin: 65px 0;
+        }
+        
+        &__text {
+            font-size: 24px;
+            font-weight: 400;
+            line-height: 31px;
+            margin-bottom: 65px;
+        }
+    }
+
+    & > .btn-signup {
+        display: none;
+    }
+
+    &__img {
+        grid-column: span 7;
+        
+        img {
+            width: 100%;
+            display: block;
+        }
+    }
+
+    @include tablet {
+        display: block;
+        box-shadow: unset;
+
+        &__content {
+            padding: 0;
+            background: $color-white;
+            color: $color-primary;
+            min-width: auto;
+
+            & .btn-signup {
+                display: none;
+            }
+
+            &__headline {
+                font-size: 40px;
+                line-height: 52px;
+                white-space: normal;
+                margin: 0 0 20px 0;
+            }
+            
+            &__text {
+                font-size: 13px;
+                line-height: 17px;
+                margin: 0;
+            }
+        }
+        
+        & > .btn-signup {
+            display: block;
+        }
+
+        &__img {          
+            img {
+                border-radius: 10px;
+                margin: 35px 0;
+            }
+        }
+    }
+}
