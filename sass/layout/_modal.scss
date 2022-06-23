@@ -1,0 +1,98 @@
+.bground {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(26, 39, 156, 0.4);
+}
+
+.modal {
+    margin: 10% auto;
+    width: 540px;
+    animation-name: modalopen;
+    animation-duration: $modal-duration;
+    color: $color-white;
+    background: $color-primary;
+    border-radius: 10px;
+    position: relative; /* for close button */
+
+    &.confirmation {
+        height: 800px;
+
+        .modal__body {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-text {
+            text-align: center;
+            align-self: center;
+            margin-top: auto;
+            width: 300px;
+            font-size: 36px;
+        }
+
+        .btn--close {
+            margin-top: auto;
+        }
+    }
+
+    &__body {
+        padding: 40px;
+        margin: 0 auto;
+    }
+
+    @include tablet {
+        width: 100%;
+        margin-top: 90px;
+
+        &__body {
+            padding: 30px;
+        }
+    }
+}
+
+.close {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    width: 32px;
+    height: 32px;
+    opacity: 1;
+    cursor: pointer;
+    transform: scale(0.7);
+}
+
+.close:before,
+.close:after {
+    position: absolute;
+    left: 15px;
+    content: " ";
+    height: 33px;
+    width: 3px;
+    background-color: $color-white;
+}
+
+.close:before {
+    transform: rotate(45deg);
+}
+
+.close:after {
+    transform: rotate(-45deg);
+}
+
+@keyframes modalopen {
+    from {
+        opacity: 0;
+        transform: translateY(-150px);
+    }
+    to {
+         opacity: 1;
+    }
+}

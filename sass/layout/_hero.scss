@@ -30,7 +30,7 @@
         }
     }
 
-    & > .btn-signup {
+    & > .btn--signup {
         display: none;
     }
 
@@ -54,7 +54,7 @@
             color: $color-primary;
             min-width: auto;
 
-            & .btn-signup {
+            & .btn--signup {
                 display: none;
             }
 
@@ -72,7 +72,7 @@
             }
         }
         
-        & > .btn-signup {
+        & > .btn--signup {
             display: block;
         }
 

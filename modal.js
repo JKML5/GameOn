@@ -36,7 +36,7 @@ const errorMessages = {
   'locationNull'      : 'Merci de sélectionner au moins une ville',
   'CGUUnchecked'      : 'Veuillez accepter les conditions d’utilisation',
 };
-const confirmationMessage = 'Merci ! Votre réservation a bien été enregistrée.';
+const confirmationMessage = 'Merci pour votre inscription';
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -125,12 +125,27 @@ function validate() {
     showError(formCGU.parentElement, errorMessages.CGUUnchecked, data)
   }
 
-  if (data.nbErrors <= 0) {
-    var confirmationMessageElt = document.createElement('p');
+  if (data.nbErrors >= 0) {
+    let modalElt = document.querySelector(".modal");
+    modalElt.className = 'modal confirmation';
+
+    let modalBody = document.querySelector(".modal__body");
+
+    let confirmationMessageElt = document.createElement('p');
     confirmationMessageElt.className = 'hero-text';
     confirmationMessageElt.innerText = confirmationMessage;
-    heroContent.append(confirmationMessageElt);
-    closeModal();
+    
+    modalBody.className = 'modal__body';
+    modalBody.innerHTML = '';
+    modalBody.append(confirmationMessageElt);
+    
+    let btn = document.createElement('button');
+    btn.innerText = 'Fermer';
+    btn.className = 'btn btn--center btn--close';
+    btn.addEventListener("click", closeModal);
+    modalBody.append(btn);
+
+
   }
 
   return false;

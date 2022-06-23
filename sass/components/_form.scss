@@ -1,0 +1,157 @@
+.form {
+    display: flex;
+    flex-direction: column;
+
+    .formData {
+        margin-bottom: 13px;
+
+        &[data-error]::after {
+            content: attr(data-error);
+            width: 100%;
+            font-size: 12px;
+            color: $color-secondary;
+            display: block;
+            margin-top: 7px;
+            margin-bottom: 7px;
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        &[data-error-visible="true"]::after {
+            opacity: 1;
+        }
+
+        &[data-error-visible="true"] .form__inputText {
+            border: 2px solid $color-secondary;
+        }
+    }
+
+    &__label {
+        font-size: 14px;
+        font-weight: 400;
+        display: inline-block;
+        padding-bottom: 17px;
+
+        /* Boutons radio */
+        &--location {
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+            font-weight: 400;
+            margin-right: 25px;
+            padding: 0;
+        }
+
+        /* Cases à cocher */
+        &--checkbox {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            padding: 0;
+        }
+
+        @include tablet {
+            padding-bottom: 10px;
+
+            &--location {
+                margin-right: 9px;
+            }
+        }
+    }
+
+    &__inputText {
+        width: 100%;
+        height: 65px;
+        padding: 10px;
+        border: 1px solid $color-input;
+        border-radius: 8px;
+        font-size: 18px;
+        font-weight: 400;
+
+        @include tablet {
+            height: 50px;
+        }
+    }
+
+    &__inputRadio, &__inputCheckbox {
+      display: none;
+    }
+
+    .location {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    &__inputRadioIcon {
+        width: 25px;
+        height: 25px;
+        margin-right: 6px;
+        border: 1px solid $color-tertiary;
+        border-radius: 50%;
+        transition: 0.3s;
+
+        &::after {
+            display: block;
+            content: "";
+            width: 17px;
+            height: 17px;
+            margin: 3px;
+            background-color: $color-tertiary;
+            border-radius: 50%;
+            transition: 0.3s;
+            opacity: 0;
+        }
+
+        @include tablet {
+            width: 20px;
+            height: 20px;
+
+            &::after {
+                width: 12px;
+                height: 12px;
+            }
+        }
+    }
+
+    &__inputCheckboxIcon {
+        width: 25px;
+        height: 25px;
+        margin-right: 8px;
+        border-radius: 6px;
+        background-color: $color-input;
+
+        &::after {
+            display: block;
+            content: "";
+            width: 8px;
+            height: 3px;
+            margin: 7px;
+            transition: 0.3s;
+            opacity: 0;
+            border: 2px solid transparent;
+            border-bottom-color: $color-white;
+            border-left-color: $color-white;
+            transform: rotate(-50deg);
+        }
+
+        @include tablet {
+            width: 20px;
+            height: 20px;
+
+            &::after {
+                width: 6px;
+                height: 2px;
+                margin: 5px;
+            }
+        }
+    }
+
+    &__inputRadio:checked + &__label--location &__inputRadioIcon::after,
+    &__inputCheckbox:checked + &__label--checkbox &__inputCheckboxIcon::after {
+        opacity: 1;
+    }
+
+    &__inputCheckbox:checked + &__label--checkbox &__inputCheckboxIcon {
+        background: #279e7a;
+    }
+}

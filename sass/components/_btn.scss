@@ -1,7 +1,8 @@
 .btn {
     display: block;
+    min-width: 180px;
     font-weight: 500;
-    font-size: 25px;
+    font-size: 14px;
     line-height: 33px;
     color: $color-white;
     background-color: $color-secondary;
@@ -14,6 +15,10 @@
     &--center {
         margin-left: auto;
         margin-right: auto;
+    }
+    
+    &--signup {
+        font-size: 25px;
     }
 
     @include tablet {
