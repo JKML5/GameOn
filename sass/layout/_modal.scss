@@ -20,15 +20,11 @@
     border-radius: 10px;
     position: relative; /* for close button */
 
-    &.confirmation {
+    &__confirmation {
         height: 800px;
-
-        .modal__body {
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
 
         .hero-text {
             text-align: center;
@@ -40,6 +36,7 @@
 
         .btn--close {
             margin-top: auto;
+            margin-bottom: 20px;
         }
     }
 

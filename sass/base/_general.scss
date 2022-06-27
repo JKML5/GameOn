@@ -3,3 +3,7 @@
     -moz-box-sizing: border-box; /* Firefox, autres Gecko */
     -webkit-box-sizing: border-box; /* Safari/Chrome, autres WebKit */
 }
+
+.hide {
+    display: none !important;
+}
