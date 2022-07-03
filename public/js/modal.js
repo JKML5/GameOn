@@ -87,14 +87,16 @@ function validate() {
     node.setAttribute("data-error-visible", "false"); 
   });
 
-  // Last name
+  // First name
+  formFirstName.value = formFirstName.value.trim();
   if (formFirstName.value == '') {
     showError(formFirstName.parentElement, errorMessages.firstNameNull, data)
   } else if (formFirstName.value.length < formFirstName.getAttribute('minlength')) {
     showError(formFirstName.parentElement, errorMessages.firstNameTooShort, data)
   }
 
-  // First name
+  // Last name
+  formLastName.value = formLastName.value.trim();
   if (formLastName.value == '') {
     showError(formLastName.parentElement, errorMessages.lastNameNull, data)
   } else if (formLastName.value.length < formLastName.getAttribute('minlength')) {
@@ -103,6 +105,7 @@ function validate() {
 
   // Email validation
   // @see https://www.w3resource.com/javascript/form/email-validation.php
+  formEmail.value = formEmail.value.trim();
   if (formEmail.value == '') {
     showError(formEmail.parentElement, errorMessages.emailNull, data)
   } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(formEmail.value)) {
